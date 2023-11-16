@@ -67,10 +67,4 @@ export class SocketService implements OnGatewayConnection {
     const startPoints = await this.pointRepository.find();
     client.server.emit('getPoint', startPoints);
   }
-
-  @SubscribeMessage('allPoints')
-  async getPoints(@MessageBody() dto: any, @ConnectedSocket() client: any) {
-    const newPoints = await this.pointRepository.find();
-    client.server.emit('points', newPoints);
-  }
 }
